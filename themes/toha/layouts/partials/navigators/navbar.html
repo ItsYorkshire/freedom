@@ -22,11 +22,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="top-nav-items">
+    <div class="collapse navbar-collapse navbar-collapse" data-toggle="collapse" data-target="#navbar-collapse" id="top-nav-items">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#home">Home</a>
-        </li>
+
         {{- if .Site.Data.sections }}
           {{- range sort .Site.Data.sections "section.weight" }}
             {{ if and (.section.enable) (.section.showOnNavbar)}}
@@ -42,22 +40,27 @@
             {{ $hasCustomMenus = true }}
           {{ end }}
         {{ end }}
-        {{ if (or site.Params.enableBlogPost $hasCustomMenus) }}
-          <div class="dropdown-divider" id="top-navbar-divider"></div>
-        {{ end }}
-        {{ if site.Params.enableBlogPost }}
-          <li class="nav-item">
-            <a class="nav-link" id="blog-link" href="/posts">Posts</a>
-          </li>
-        {{ end }}
+
         {{ range site.Params.customMenus }}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ .url }}">{{ .name }}</a>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Our Services
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Domestic Cleans</a>
+              <a class="dropdown-item" href="#">Commercial Services</a>
+              <a class="dropdown-item" href="#">Landlord Specials</a>
+            </div>
           </li>
         {{ end }}
       </ul>
     </div>
   </div>
+
   <!-- Store the logo information in a hidden img for the JS -->
   <img src="{{ $mainLogo }}" class="d-none" id="main-logo">
   <img src="{{ $invertedLogo }}" class="d-none" id="inverted-logo">
