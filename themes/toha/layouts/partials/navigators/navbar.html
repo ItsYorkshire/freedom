@@ -1,67 +1,25 @@
-<nav class="navbar navbar-expand-xl top-navbar initial-navbar" id="top-navbar">
-  <div class="container">
-    {{ $mainLogo:="/assets/images/main-logo.png" }}
-    {{ $invertedLogo:="/assets/images/inverted-logo.png" }}
-    {{ if .Site.Params.logo.main }}
-      {{ $mainLogo = .Site.Params.logo.main }}
-    {{ end }}
-    {{ if .Site.Params.logo.inverted }}
-      {{ $invertedLogo = .Site.Params.logo.inverted }}
-    {{ end }}
-    <a class="navbar-brand" href="{{ .Site.BaseURL }}">
-      <img src="{{ $invertedLogo }}" id="logo">
-
-    </a>
-    <button
-      class="navbar-toggler navbar-dark"
-      id="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#top-nav-items"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse navbar-collapse" data-toggle="collapse" data-target="#navbar-collapse" id="top-nav-items">
-      <ul class="navbar-nav ml-auto">
-
-        {{- if .Site.Data.sections }}
-          {{- range sort .Site.Data.sections "section.weight" }}
-            {{ if and (.section.enable) (.section.showOnNavbar)}}
-              <li class="nav-item">
-                <a class="nav-link" href="#{{ replace (lower .section.name) " " "-" }}">{{ .section.name }}</a>
-              </li>
-            {{ end }}
-          {{- end }}
-        {{- end }}
-        {{ $hasCustomMenus:= false }}
-        {{ if and site.Params.customMenus }}
-          {{ if gt (len site.Params.customMenus) 0 }}
-            {{ $hasCustomMenus = true }}
-          {{ end }}
-        {{ end }}
-
-        {{ range site.Params.customMenus }}
-
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Our Services
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Domestic Cleans</a>
-              <a class="dropdown-item" href="#">Commercial Services</a>
-              <a class="dropdown-item" href="#">Landlord Specials</a>
-            </div>
-          </li>
-        {{ end }}
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+  <a class="navbar-brand" href="#"><img src="/images/freedom.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" data-toggle="collapse" data-target="#navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Our Services
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Domestic Cleans</a>
+          <a class="dropdown-item" href="#">Commercial Services</a>
+          <a class="dropdown-item" href="#">Landlord Specials</a>
+        </div>
+      </li>
+    </ul>
   </div>
-
-  <!-- Store the logo information in a hidden img for the JS -->
-  <img src="{{ $mainLogo }}" class="d-none" id="main-logo">
-  <img src="{{ $invertedLogo }}" class="d-none" id="inverted-logo">
+  </div>
 </nav>
