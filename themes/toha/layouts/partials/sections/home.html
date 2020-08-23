@@ -1,0 +1,79 @@
+<div class="container-fluid home" id="home">
+  <div
+    class="background container-fluid"
+    style="background-image: url('{{ if .Site.Params.background }}{{ .Site.Params.background }}{{ else }}/assets/images/default-background.jpg{{ end }}');"
+  ></div>
+  <div class="container content text-center">
+    <img src="{{ if .Site.Params.author.image }}{{ .Site.Params.author.image }}{{ else }}/assets/images/default-avatar.png{{ end }}"
+      class="rounded-circle mx-auto d-block img-fluid"
+    />
+    <h1 class="greeting">
+      {{ if .Site.Params.author.nickname }}
+        {{ .Site.Params.author.nickname }}
+      {{ else if .Site.Params.author.name }}
+        {{ .Site.Params.author.name }}
+      {{ else }}
+        Jane Doe
+      {{ end }}
+    </h1>
+    <div class="typing-carousel">
+      <span id="ityped" class="ityped"></span>
+      <span class="ityped-cursor"></span>
+    </div>
+    <ul id="typing-carousel-data">
+      {{ range .Site.Params.author.summary }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+    {{ if .Site.Data.sections }}
+      {{ range first 1 (where (sort .Site.Data.sections "section.weight") ".section.enable" true) }}
+        <a href="#{{ replace (lower .section.name) " " "-" }}"><i class="arrow bounce fa fa-chevron-down"></i></a>
+      {{ end }}
+    {{ end }}
+
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-sm">
+      <!-- Card 1 -->
+          <div class="card border-0">
+              <div><img class="card-img-top border-0" src="/images/cards/house-round.jpg" alt="Domestic Cleaning">
+                </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Residential:</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Find out more..</a>
+                  </div>
+          </div>
+      </div>
+          <!-- Card 2 -->
+              <div class="col-sm">
+              <div class="card border-0">
+                  <div><img class="card-img-top border-0" src="/images/cards/office-round.jpg" alt="commercial cleaning">
+                  </div>
+                      <div class="card-body">
+                        <h5 class="card-title">Commercial:</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Find out more..</a>
+                      </div>
+              </div>
+              </div>
+
+                  <div class="col-sm">
+              <!-- Card 3 -->
+                  <div class="card border-0">
+                      <div><img class="card-img-top p-0" src="/images/cards/tenancy-round.jpg" alt="Landlord Services">
+                      </div>
+                          <div class="card-body">
+                            <h5 class="card-title">Landlord's:</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Find out more..</a>
+                          </div>
+                  </div>
+                </div>
+    </div>
+  </div>
